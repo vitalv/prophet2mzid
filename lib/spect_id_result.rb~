@@ -1,0 +1,60 @@
+
+Ident = Struct.new(:id, :mass, :charge, :experi, :pep, :rank, :pass)
+PepEvidence = Struct.new(:id, :start, :end, :pre, :post, :missedCleavages, :isDecoy, :DBSequence_Ref)
+#PepModifications = Struct.new(:id, :location, :avgMassDelta )
+
+# A simple class that holds a slightly complex structure of data for mzIdentML
+#
+# @author Jesse Jashinsky (Aug 2010)
+class SpectIdResult
+
+  attr_accessor :index, :items
+
+  def initialize(index, items)
+    @index = index
+    @items = items
+  end
+  
+#   def index
+#     @index
+#   end
+#   
+#   def items
+#     @items
+#   end
+end
+
+# A simple class that holds data for SpectIdResult
+#
+# @author Jesse Jashinsky (Aug 2010)
+class SpectIdItem
+
+#   attr_accessor :ident, :pepEv, :vals, 
+
+  def initialize(ident)
+    @ident = ident
+    @pepEv = nil
+    @pepMod = nil
+    @vals = []
+  end
+  
+  def ident
+    @ident
+  end
+  
+  def pepEvidence
+    @pepEv
+  end
+
+  def pepEvidence=(pepEv)
+    @pepEv = pepEv
+  end
+
+  def vals
+    @vals
+  end
+  
+  def vals=(vals)
+    @vals = vals
+  end
+end

@@ -1,0 +1,405 @@
+require "formats/format.rb"
+require "natcmp.rb"
+require "ms/fasta.rb"
+require "summary_params.rb"
+
+# The pepXML implementation of Format
+#
+# @author Jesse Jashinsky (Aug 2010)
+# @author 2 Vital Vialas  (May 2012)
+class PepXML < Format
+  # @param [String] file the location of the pepXML file
+  # @param [String] database the location of the FASTA database that was used by the search engine
+	
+  #Vital:
+  attr_reader :file, :database, :databasename, :type, :date, :threshold, :numsequences, :searchEngine
+	
+   #my_pepxml_obj = PepXML.new("SILAC_phos_OrbitrapVelos_1_interact-ipro-filtered.pep.xml", "C_albicans_SC5314_version_A21-s02-m01-r07_orf_trans_all_plus_contaminants_DECOY.fasta")
+  def initialize(file, database)
+    super
+  #@file, @database = file, database
+    @type = "pepxml"
+    @doc = Nokogiri::XML(File.open(file))
+    @xmlns = ""
+    @numsequences = 0
+    @proteinIndices = []
+
+    @threshold = 0
+    
+    # Nokogiri won't parse out the information of an XML file that uses namespaces unless you add xmlns, and vice versa.
+    @xmlns = "xmlns:" if hasNamespace
+    
+    findAllPepLocations # Finds all pep locations and puts them in array: [[peptide, protein, start, end]]
+
+    summary_params
+    
+    temp = database.split("/")
+    @databaseName = temp[temp.length-1]
+    
+  end
+
+
+  def proteins
+    #@pros[1] es  ["orf19.2167", "orf19.2167 CGDID:CAL0005395 Description.......ization", "DBSeq_1_orf19.2167"]
+    allHits = @doc.xpath("//#{@xmlns}search_hit/@protein|//#{@xmlns}search_hit/@protein_descr")
+    pros = []
+    i = 0
+    
+    while i < allHits.length
+      pro = proteinID(allHits[i].to_s)
+      pros << [pro, allHits[i+1].to_s, "DBSeq_1_#{pro}"]
+      i += 2
+    end
+    
+    @pros = pros.uniq
+    @pros
+  end
+
+
+  def peptides
+
+    peps = []
+    @doc.xpath("//#{@xmlns}search_hit").each do |search_hit|
+#      pep_id = "PEP_#{i}"
+      pepseq = search_hit.xpath("./@peptide").to_s
+      peps << [pepseq, getModifications(pepseq, search_hit)]
+    end
+
+    peps.uniq!
+    
+    i = 0
+    first = 1
+    second = 1
+    while i < peps.length
+      peps[i] = ["peptide_#{first}_#{second}", peps[i]]      
+      i += 1
+      second += 1      
+      if second == 11
+        first += 1
+        second = 1
+      end
+    end
+    
+    @peps = peps
+    peps
+
+  end
+
+
+
+  def summary_params
+
+    summary_params = []
+    spect_id_lists = []
+    @doc.xpath("//#{@xmlns}msms_run_summary").each do |msmsrun|
+      inputraw = msmsrun.xpath("./@base_name").to_s #AtiO2, Elu1A, Elu2A
+      inputraw = inputraw.split("/")[-1] if inputraw =~ /^\//
+      sil_id = "SIL_#{inputraw}"
+      spect_id_lists << sil_id
+      searchEngine = msmsrun.xpath("./@search_engine").to_s
+      manufacturer = msmsrun.xpath("./@msManufacturer").to_s
+      model = msmsrun.xpath("./@msModel").to_s
+      ionization = msmsrun.xpath("./@msIonization").to_s
+      analyzer = msmsrun.xpath("./@msMassAnalyzer").to_s
+      detector = msmsrun.xpath("./@msDetector").to_s
+      raw_data_file_type = msmsrun.xpath("./@raw_data").to_s
+
+      ms_run_params_set = MsRunParamsSet.new(Msrunparams.new(inputraw, searchEngine, manufacturer, model, ionization, analyzer, detector, raw_data_file_type))
+
+      #enzyme
+      #enzyme_specificity    
+
+      search_summ = msmsrun.xpath(".//#{@xmlns}search_summary")
+      search_database = search_summ.xpath(".//#{@xmlns}search_database/@local_path").to_s
+      precursor_mass_type = search_summ.xpath("./@precursor_mass_type").to_s
+      fragment_mass_type = search_summ.xpath("./@fragment_mass_type").to_s
+
+      modifications = search_summ.xpath(".//#{@xmlns}aminoacid_modification")
+      searched_modif_Arr = []
+  
+      if !modifications.empty?
+        modifications.each do |mod|
+          residue = mod.xpath("./@aminoacid").to_s
+          mass_delta = mod.xpath("./@massdiff").to_s.to_f
+          mass = mod.xpath("./@mass").to_s.to_f
+          variable = mod.xpath("./@variable").to_s
+          searched_modif_Arr << [residue, mass_delta, mass, variable2fixed(variable)]
+        end
+      end
+
+      #additionalSearchParamsArr
+
+      search_params_set = SearchParamsSet.new(Searchparams.new(search_database, precursor_mass_type, fragment_mass_type, searched_modif_Arr))
+
+      summary_params << SummaryParams.new(sil_id, ms_run_params_set, search_params_set)
+    end
+
+    @spect_id_lists = spect_id_lists
+#    @searchEngine = searchEngine
+
+    summary_params
+
+  end
+
+
+
+  def results 
+
+
+    result_set = {}
+    @doc.xpath("//#{@xmlns}msms_run_summary").each_with_index do |msmsrun, i| #(x3)
+      sil = @spect_id_lists[i]
+      queries = msmsrun.xpath(".//#{@xmlns}spectrum_query")
+      indicies = msmsrun.xpath(".//#{@xmlns}spectrum_query/@spectrum").collect {|index| index.to_s}
+      indicies = indicies.sort {|x,y| String.natcmp(x, y)}
+      results = []
+    
+      queries.each do |query|
+        charge = query.xpath("./@assumed_charge").to_s.to_i
+        hits = query.xpath(".//#{@xmlns}search_hit")
+        items = []
+        rank = 1
+      
+        hits.each do |hit|
+          items << getItem(hit, rank, charge)
+          rank += 1
+        end
+      
+        results << SpectIdResult.new(indicies.index(query.xpath("./@spectrum").to_s), items)
+
+      end      
+
+      result_set[sil] = results
+
+    end
+ 
+    result_set
+
+  end
+ 
+
+
+  private
+  
+  # Checks if the pepXML file used namespaces
+  # @return [Boolean] true if it uses namespaces, false if not
+  def hasNamespace
+    if @doc.xpath("msms_pipeline_analysis").to_s.length == 0
+      true
+    else
+      false
+    end
+  end
+  
+  # @param [Nokogiri] hit the spectra hit information
+  # @param [Integer] rank the rank
+  # @param [Integer] charge the charge
+  # @return [SpectIdItem] the result item
+  def getItem(hit, rank, charge)
+    mass = hit.xpath("./@calc_neutral_pep_mass").to_s.to_f
+    diff = hit.xpath("./@massdiff").to_s.to_f
+    scores = hit.xpath(".//#{@xmlns}search_score")
+    pep = hit.xpath("./@peptide").to_s
+    ref = ""
+
+    @peps.each do |thisPep|
+      if pep == thisPep[1][0]
+        ref = thisPep[0]
+        break
+      end
+    end
+    
+    #SpectIdItem is a class in spect_id_result.rb
+    #(:id, :mass, :charge, :experi, :pep, :rank, :pass)
+    item = SpectIdItem.new(Ident.new(rank, calMass(mass, charge), charge, experiMass(mass, charge, diff), ref, rank, "true"))
+    obo_mapping_scoreArr, non_obo_mapping_scoreArr = [] , []
+    
+#    puts "@searchEngine, toma el valor en summary_params : #{@searchEngine}"
+    searchEngine = hit.parent.parent.parent.xpath("./@search_engine").to_s
+
+    scores.each do |score|
+      id, name = findAccession(conformScoreName(score.xpath("./@name").to_s, searchEngine))
+      if id != ""
+        obo_mapping_scoreArr << [id, name, score.xpath("./@value").to_s] 
+      else
+        non_obo_mapping_scoreArr << [name, score.xpath("./@value").to_s]
+      end
+    end
+    
+    item.vals = [obo_mapping_scoreArr] + [non_obo_mapping_scoreArr]
+    item.pepEvidence = getEvidence(hit, pep, ref)
+#    item.pepModifications = getModifications(hit, ref)
+    item
+
+  end
+
+
+  # @return [PepEvidence] the peptideEvidence
+  def getEvidence(hit, pep, id)
+    pre = hit.xpath("./@peptide_prev_aa").to_s
+    post = hit.xpath("./@peptide_next_aa").to_s
+    missedCleavages = hit.xpath("./@num_missed_cleavages").to_s
+    pro = proteinID(hit.xpath("./@protein").to_s)
+    startVal, endVal = pepLocation(hit, pro, pep)
+    ref = ""
+    
+    @pros.each do |thisPro|
+      if pro == thisPro[0]
+        ref = thisPro[2]
+        break
+      end
+    end    
+    #PepEvidence is a structure, defined in spect_id_result.rb (required in format.rb)
+    #(:id, :start, :end, :pre, :post, :missedCleavages, :isDecoy, :DBSequence_Ref)
+    PepEvidence.new(id, startVal, endVal, pre, post, missedCleavages, false, ref)
+  end
+  
+
+  def getModifications(pepseq, hit)
+    pep_modifications_Arr = []
+
+    modifications = hit.xpath(".//#{@xmlns}modification_info") 
+    if !modifications.empty?
+      residue, location, mass  = "", 0, 0
+      modifications.xpath(".//#{@xmlns}mod_aminoacid_mass").each do |mod|    
+        location = mod.xpath("./@position").to_s.to_i
+        residue = pepseq.split(%r{\s*})[location-1]
+        mass = mod.xpath("./@mass").to_s 
+        massdiff = ""
+        hit.parent.parent.parent.xpath(".//#{@xmlns}aminoacid_modification").each { |m| massdiff = m.xpath("./@massdiff").to_s if m.xpath("./@aminoacid").to_s == residue and m.xpath("./@mass").to_s == mass}
+        cvParam = getModificationCvParam(residue, massdiff)
+        pep_modifications_Arr << [residue, location, massdiff, cvParam]    
+      end       
+    end
+    pep_modifications_Arr
+  end
+
+
+  def getModificationCvParam(residue, massdiff)
+    #'%.2f' %  "57.0215".to_f
+    cvParam = 
+      case [residue, massdiff]
+        when ["C", "57.0215"]
+          ["UNIMOD", "UNIMOD:4", "Carbamidomethyl"]
+        when ["M", "15.9949"]
+          ["UNIMOD", "UNIMOD:35", "Oxidation"]
+        when ["L", "6.0201"]
+          ["MS", "MS:1001460", "unknown modification"]  
+        when ["R", "6.0201"]
+          ["MS", "MS:1001460", "unknown modification"] 
+        when ["S", "79.9663"]
+          ["UNIMOD", "UNIMOD:21", "Phospho"]
+        when ["T", "79.9663"]
+          ["UNIMOD", "UNIMOD:21", "Phospho"]
+        when ["Y", "79.9663"]
+          ["UNIMOD", "UNIMOD:21", "Phospho"]
+      end
+    cvParam 
+  end
+
+
+  # @param [Nokogiri] hit the spectra hit information
+  # @param [String] pro the protein
+  # @param [String] pep the peptide
+  # @return [Integer, Integer] the start and end location of the peptide
+  def pepLocation(hit, pro, pep)
+    @locations.each do |location|
+      if location[0] == pep && location[1] == pro
+        return location[2], location[3]
+      end
+    end
+    return 0, 0    #In case it doesn't find anything
+  end
+
+  # Finds all peptide locations and puts them in an array in the format: [[peptide, protein, start, end]]
+  def findAllPepLocations
+    hits = @doc.xpath("//#{@xmlns}search_hit")
+    all = []
+    @locations = []
+    i = 0
+    
+    # Parses out each peptide and protein
+    hits.each do |hit|
+      all << [hit.xpath("./@peptide").to_s, proteinID(hit.xpath("./@protein").to_s)]
+      i += 1
+    end
+    
+    all.uniq!
+    dataHash = Hash.new
+    
+    Ms::Fasta.foreach(@database) do |entry|
+#     Ms::Fasta.foreach("./spec/test_files/C_albicans_SC5314_version_A21-s02-m01-r07_orf_trans_all_plus_contaminants_DECOY.fasta") do |entry|
+      @numsequences += 1
+      pID = ""
+      if @database == "C_albicans_SC5314_version_A21-s02-m01-r07_orf_trans_all_plus_contaminants_DECOY.fasta" #if de Vital
+        candi_orf_header = entry.header.split("\s")[0] #if entry.header =~ /^orf/
+        pID = proteinID(candi_orf_header)
+      else #esto es como estaba. Quitar el if, este else y el end y dejar solo la linea sig
+        pID = proteinID(entry.header)
+      end
+      dataHash[pID] = entry.sequence
+      @proteinIndices << pID
+    end
+    
+    all.each do |set|
+      if dataHash[set[1]] != nil
+        startVal = dataHash[set[1]].scan_i(set[0])[0]
+        
+        if startVal != nil
+          @locations << [set[0], set[1], startVal + 1, startVal + set[0].length]
+        end
+      end
+    end
+  end
+
+
+  def proteinID(protein)
+    #If a protein ID contains a "|", then it contains more than just the ID
+    if protein.include?('|')
+      arr = protein.split("|")[1].split(":")
+      if arr.length == 1
+        arr[0]
+      else
+        arr[1]
+      end
+    #If there's no characters, then it's an index. I don't fully understand regexp, but this works.
+    elsif (protein =~ /[A-Z]/i) == nil
+      @proteinIndices[protein.to_i]
+    else
+      protein
+    end
+  end
+
+
+  def variable2fixed(boolthing)
+    fixed = 
+      case boolthing
+        when "N"
+          "true"
+        when "Y"
+          "false"
+      end      
+    fixed
+  end
+
+
+end
+
+
+
+
+# For quickly getting the start and end indexes of a string
+class String
+  def scan_i seq
+    pos = 0
+    ndx = []
+    slen = seq.length
+    
+    while i = index(seq,pos)
+      ndx << i
+      pos = i + slen
+    end
+    
+    ndx
+  end
+end

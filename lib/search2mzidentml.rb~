@@ -1,0 +1,309 @@
+#$: contains the directories that make up the path Ruby searches when loading an external file
+#so here I'm including all files in .
+$: << "#{File.expand_path(File.dirname(__FILE__))}/"
+
+require "formats/pepxml"
+#require "formats/protxml"
+require 'nokogiri'
+
+# Creates an mzIdentML file from a file type created by a search engine, using the format classes such as PepXML.
+#
+# @author Jesse Jashinsky (Aug 2010)
+#
+# Added functionality: Uses data from pepXML and protXML combining both to create mzIdentML (mzIdentML1_1_0 element <ProteinDetectionList> is now included)
+# Author: Vital Vialas (Apr 2012)
+
+class Search2mzIdentML
+  # @param [String] format a Format object
+
+#  def initialize(pepxml, protxml)
+  def initialize(pepxml)
+    @pepxml = pepxml
+#    @protxml = protxml
+  end
+  
+  # Starts the Nokogiri build process. Other methods build the different parts of the file. Root is depth 0
+  #
+  # @option opts [] currently does nothing
+  def convert(opts={})
+    puts "Creating file...\n\n"
+    
+    builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+      xml.mzIdentML(:id => "",
+        :version => "1.1.0",
+        'xsi:schemaLocation' => "http://www.psidev.info/files/mzIdentML1.1.0.xsd",
+        'xmlns' => "http://www.psidev.info/index.php?q=node/454#mzIdentML1_1_0",
+        'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+        :creationDate => @pepxml.date) {
+          cvList(xml)
+          analysisSoftwareList(xml)
+          #analysisSampleCollection(xml)
+          #provider(xml)  #Doesn't pass the validator, so I'm leaving it out.
+          sequenceCollection(xml)
+          analysisCollection(xml)
+          analysisProtocolCollection(xml)
+          dataCollection(xml)
+	#Bajo DataCollection está AnalysisData y bajo AnalysisData , SpectrumIdentificationList que lo cojo del pep.xml pero también tengo que incluir ProteinDetectionList, que lo cojo del prot.xml
+        }
+    end
+    
+    @pepxml.display_missed_mappings
+    File.open(base_file + ".mzid", 'w') {|io| io.puts builder.to_xml}
+  end
+  
+  
+  private
+  
+  # Takes the input filename and the filetype type (tp)
+  def base_file
+    if @pepxml.type == "pepxml"
+      @pepxml.file.chomp('.pep.xml')
+    end
+  end
+  
+  # Depth 1. This method name, as well as all the other ones like it, are named after the sections they create.
+  def cvList(xml)
+    xml.cvList {
+      xml.cv(:id => "PSI-MS", :fullName => "Proteomics Standards Initiative Mass Spectrometry Vocabularies", :URI => "http://psidev.cvs.sourceforge.net/viewvc/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo", :version => "2.32.0")
+      xml.cv(:id => "UNIMOD", :fullName => "UNIMOD", :URI => "http://www.unimod.org/obo/unimod.obo")
+      xml.cv(:id => "UO", :fullName => "UNIT-ONTOLOGY", :URI => "http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo")
+    }
+  end
+  
+  # Depth 1
+  def analysisSoftwareList(xml)
+    xml.AnalysisSoftwareList {
+      xml.AnalysisSoftware(:id => @pepxml.searchEngine) {
+        xml.SoftwareName {
+          array = @pepxml.findAccession(@pepxml.searchEngine)
+            xml.cvParam(:accession => array[0], :name => array[1], :cvRef => "PSI-MS")
+        }
+      }
+    }
+  end
+  
+  # Depth 1
+  def provider(xml)
+    xml.Provider(:Software_ref => "search2mzIdentML.rb", :id => "PROVIDER") {
+      xml.ContactRole(:Contact_ref => "PERSON_DOC_OWNER") {
+        xml.role {
+          xml.cvParam(:accession => "MS:1001271", :name => "researcher", :cvRef => "PSI-MS")
+        }
+      }
+    }
+  end
+  
+  # Depth 1
+  def sequenceCollection(xml)
+    xml.SequenceCollection {
+      dBSequences(xml)
+      peptides(xml)
+      peptideEvidences(xml)
+    }
+  end
+  
+  # Depth 2
+  def dBSequences(xml)
+    proteins = @pepxml.proteins    
+    proteins.each do |protein|
+      xml.DBSequence(:id => protein[2], :SearchDatabase_ref => "SDB_1", :accession => protein[0]) {
+        xml.cvParam(:accession => "MS:1001088", :name => "protein description", :cvRef => "PSI-MS", :value => protein[1])
+      }
+    end
+  end
+  
+  # Depth 2
+  def peptides(xml)
+    peptides = @pepxml.peptides    
+    peptides.each do |peptide|
+      pep_id = peptide[0]
+      pep_seq, modif_arr = peptide[1][0], peptide[1][1]
+      xml.Peptide(:id => pep_id) {
+        xml.PeptideSequence  pep_seq 
+        if !modif_arr.empty?
+          modif_arr.each do |modif|
+            cvParam = modif[-1]
+            xml.Modification(:residues => modif[0], :location => modif[1], :avgMassDelta => modif[2] ) {
+              xml.cvParam(:cvRef => cvParam[0], :accession => cvParam[1], :name => cvParam[2])  if !cvParam.nil?
+            }
+          end
+        end
+      }
+    end
+  end
+
+  # Depth 2
+  def peptideEvidences(xml)
+    @pepxml.results.values.each do |result_set|
+      result_set.each do |result|
+#        i = 0
+        result.items.uniq.each do |item|
+          #This <PeptideEvidence>, unlike <PeptideEvidenceRef > under <SpectrumIdentificationItem>, MUST be unique
+          pepEv = item.pepEvidence
+          if pepEv != nil
+            xml.PeptideEvidence(
+            #OJO!! PARA ALGUNOS pepEv, no todos, la DBSequence_Ref esta vacia: ""
+            :dbSequence_ref => pepEv.DBSequence_Ref, #A ref 2 the prot seq in which the specified pep has been linked
+            :frame => "",
+            :id => "#{pepEv.id}_ev",  #The SII ID is added because IDs must be unique.
+            :isDecoy => pepEv.isDecoy,
+            :name => "",
+            :peptide_ref => pepEv.id, #A ref to the identified pep in the Peptide element
+            :start => pepEv.start,
+            :end => pepEv.end,
+            :pre => pepEv.pre,
+            :post => pepEv.post)
+#            :missedCleavages => pepEv.missedCleavages, #no se donde va missedCleavages, pero aqui no va
+#            i += 1
+          end
+        end
+      end
+    end
+  end
+
+  
+  # Depth 1
+  def analysisCollection(xml)
+    xml.AnalysisCollection {
+      #SI_ATiO2
+      #SIP_ATiO2
+      #SIL_ATiO2
+      #SID_ATiO2 
+      #New Added Functionality: More than one SpectrumIdentification and SpectrumIdentificationProtocol per file
+      @summparams = @pepxml.summary_params
+      @summparams.each do |s|
+        sil = s.sil
+        inputraw = s.ms_run_params_set.msrunparams.inputraw
+        database = s.search_params_set.searchparams.search_database
+        xml.SpectrumIdentification(:id => "SI_#{inputraw}", :SpectrumIdentificationProtocol_ref => "SIP_#{inputraw}", :SpectrumIdentificationList_ref => sil, :activityDate => @pepxml.date) {
+          xml.InputSpectra(:spectraData_ref => "SID_#{inputraw}")
+          xml.SearchDatabase(:SearchDatabase_ref => "#{database}")
+        }
+        xml.ProteinDetection()
+      end
+    }
+  end
+  
+  # Depth 1
+  def analysisProtocolCollection(xml)
+    xml.AnalysisProtocolCollection {
+      SpectrumIdentificationProtocol(xml)
+      #ProteinDetectionProtocol(xml)
+    }
+  end
+  
+  # Depth 2
+  def SpectrumIdentificationProtocol(xml)
+    @summparams.each do |s|
+      inputraw = s.ms_run_params_set.msrunparams.inputraw
+      searched_mod_param_arrs = s.search_params_set.searchparams.searched_modif_Arr
+      xml.SpectrumIdentificationProtocol(:id => "SIP_#{inputraw}", :analysisSoftware_ref => @pepxml.searchEngine) {
+        xml.SearchType { #support for ms-ms only #Don't know of any value other than "ms-ms search." Should probably fix this in the future. #MS:1001010 (de novo search), MS:1001031 (spectral library search), MS:1001081 (pmf search), MS:1001584 (combined pmf + ms-ms search)
+          xml.cvParam(:accession => "MS:1001083", :name => "ms-ms search", :cvRef => "PSI-MS", :value => "")
+        }
+        #BAJO SearchType hay que poner <AdditionalSearchParams
+        xml.ModificationParams {
+          searched_mod_param_arrs.each do |m_arr|            
+            xml.SearchModification(:residues => m_arr[0], :massDelta => m_arr[1], :fixedMod => m_arr[3])
+          end    
+        }
+        xml.Threshold {
+          if @pepxml.threshold == 0
+            xml.cvParam(:accession => "MS:1001494", :name => "no threshold", :cvRef => "PSI-MS")
+          else
+            xml.cvParam(:accession => "MS:?", :name => "?", :cvRef => "PSI-MS", :value => @pepxml.threshold)
+          end
+        }
+      }
+    end
+  end
+
+  # Depth 2
+#  def ProteinDetectionProtocol
+
+#  end
+  
+  # Depth 1
+  def dataCollection(xml)
+    xml.DataCollection {
+      inputs(xml)
+      xml.AnalysisData {
+        spectrumIdentificationList(xml)
+        #proteinDetectionList(xml)
+      }
+    }
+  end
+  
+  # Depth 2
+  def inputs(xml)
+    xml.Inputs { #The database searched and the input file converted to mzIdentML
+      #xml.SourceFile
+      #SearchDatabase x search
+      xml.SearchDatabase(:location => @pepxml.database, :id => "SDB_1") {
+        xml.DatabaseName {
+          xml.userParam(:name => File.basename(@pepxml.database))
+        }
+      }
+      #xml.SpectraData
+    }
+  end
+
+
+  # Depth 3
+  def spectrumIdentificationList(xml)
+    @pepxml.summary_params.each do |s|
+      sil = s.sil
+      xml.SpectrumIdentificationList(:id => sil) {
+        spectrumIdentificationResult(xml, sil)
+      }
+    end
+
+  end
+  
+  # Depth 4
+  def spectrumIdentificationResult(xml, sil)
+
+    results = @pepxml.results[sil]
+    i = 1
+    
+    results.each do |result|
+      xml.SpectrumIdentificationResult(:id => "SIR_#{i}", :spectrumID => "index=#{result.index}", :SpectraData_ref => File.basename(@pepxml.file)) {
+        result.items.each do |item|
+          ident = item.ident
+          siiID = "SII_#{i}_#{ident.id}"
+          
+          #Depth 5
+          xml.SpectrumIdentificationItem(
+            :id => siiID,
+            :calculatedMassToCharge => '%.8f' % ident.mass,  #The 8 dec format is arbitrary. I just felt like it.
+            :chargeState => ident.charge,
+            :experimentalMassToCharge => '%.8f' % ident.experi,
+            :Peptide_ref => ident.pep,
+            :rank => ident.rank,
+            :passThreshold => ident.pass) {
+              spectrumIdentificationItemVals(xml, item, siiID)
+            }
+        end
+      }  if result.items.length > 0  #Schema says that SpectrumIdentificationResult can't be empty
+      i += 1
+    end
+  end
+  
+  # Depth 6
+  def spectrumIdentificationItemVals(xml, item, siiID)
+    #OJO! Porque Peptide_ref en SpectrumIdentificationItem no es lo mismo que PeptideEvidence_ref aqui
+    pepEv = item.pepEvidence
+    xml.PeptideEvidenceRef(:peptideEvidence_ref => pepEv.id) if pepEv != nil
+    
+    item.vals.each do |val| #estos item.vals son los scores basicamente
+      #Not all pepxml score names have a corresponding mzIdentML value, so those are left out.
+      #Instead of that, non-mapping score names should be included as <userParams>
+      cv_param, user_param = val[0], val[1]
+      xml.cvParam(:accession => cv_param[0], :name => cv_param[1], :cvRef => "PSI-MS", :value => cv_param[2])
+      xml.userParam(:name => userParam[0], :value => userParam[1])
+      #En estos cvParams van los scores pero también otras cosas como number of matched / unmatched ions!!
+      #Los scores que no mapean con nada en oboe.yaml. se incluyen como userParam
+
+    end
+  end
+end

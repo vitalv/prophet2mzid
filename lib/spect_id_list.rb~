@@ -1,0 +1,29 @@
+
+Msrunparams = Struct.new(:sil_id, :msmsrun_inputraw, :msmsrun_searchEngine, :msmsrun_manufacturer, :msmsrun_model, :msmsrun_ionization, :msmsrun_analyzer, :msmsrun_detector, :msmsrun_raw_data_file_type)
+
+SearchParams = Struct.new()
+
+# A simple class that holds a slightly complex structure of data for mzIdentML
+#
+# @author  ()
+
+class SpectIdList
+
+  attr_accessor :index, :items
+  def initialize(sil, ms_runparams_set)
+  
+  end
+
+
+end
+
+# A simple class that holds data for 
+#
+# @author ()
+class MsRunParamsSet
+     attr_accessor :sil_id, :msmsrun_inputraw, :msmsrun_searchEngine, :msmsrun_manufacturer, :msmsrun_model, :msmsrun_ionization, :msmsrun_analyzer, :msmsrun_detector, :msmsrun_raw_data_file_type)
+  def initialize(msrunparams)
+
+  end
+
+end
