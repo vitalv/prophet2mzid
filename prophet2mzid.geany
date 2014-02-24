@@ -15,24 +15,14 @@ indent_mode=2
 [project]
 name=prophet2mzid
 base_path=/home/vital/Prophet2mzid
+description=
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=10
-FILE_NAME_0=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Fbin%2Fbinthing.rb;0;4
-FILE_NAME_1=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Flib%2Fsearch2mzidentml.rb;0;4
-FILE_NAME_2=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Flib%2Fpeptide_identification_summary_params.rb;0;4
-FILE_NAME_3=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Flib%2Fprotein_detection_params.rb;0;4
-FILE_NAME_4=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Flib%2Fprotein_group.rb;0;4
-FILE_NAME_5=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Flib%2Fspect_id_result.rb;0;4
-FILE_NAME_6=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Flib%2Fformats%2Fformat.rb;0;4
-FILE_NAME_7=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Flib%2Fformats%2Fpepxml.rb;0;4
-FILE_NAME_8=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2Flib%2Fformats%2Fprotxml.rb;0;4
-FILE_NAME_9=0;XML;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2FPAe001976_Orbitrap_XL_CID_SILAC_IMAC_Replicate_1B_Search_Results%2Finteract-ipro-filtered.mzid;0;4
-FILE_NAME_10=0;XML;0;EUTF-8;1;1;0;%2Fhome%2Fvital%2FProphet2mzid%2FPAe001976_Orbitrap_XL_CID_SILAC_IMAC_Replicate_1B_Search_Results%2Finteract-ipro.pep.xml;0;4
+current_page=0
 
 [VTE]
 last_dir=/home/vital
