@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MzIdentML xmlns="http://psidev.info/psi/pi/mzIdentML/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="" version="1.1.0" xsi:schemaLocation="http://psidev.info/psi/pi/mzIdentML/1.1 ../../schema/mzIdentML1.1.0.xsd" creationDate="2014-02-24T17:54:55">
+<MzIdentML xmlns="http://psidev.info/psi/pi/mzIdentML/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="" version="1.1.0" xsi:schemaLocation="http://psidev.info/psi/pi/mzIdentML/1.1 ../../schema/mzIdentML1.1.0.xsd" creationDate="2014-02-24T22:37:56">
   <cvList>
     <cv id="PSI-MS" fullName="Proteomics Standards Initiative Mass Spectrometry Vocabularies" uri="http://psidev.cvs.sourceforge.net/viewvc/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo" version="2.32.0"/>
     <cv id="UNIMOD" fullName="UNIMOD" uri="http://www.unimod.org/obo/unimod.obo"/>
@@ -745,7 +745,9 @@
     </DBSequence>
     <Peptide id="peptide_1_1">
       <PeptideSequence>QNSLLHQSQQR</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
       <Modification residues="S" location="3" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
@@ -785,7 +787,9 @@
       <Modification residues="S" location="6" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="15" avgMassDelta=""/>
+      <Modification residues="L" location="15" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_1_7">
       <PeptideSequence>ALVNPNEDLSSNVVTR</PeptideSequence>
@@ -798,7 +802,9 @@
       <Modification residues="S" location="3" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="9" avgMassDelta=""/>
+      <Modification residues="L" location="9" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="11" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -811,7 +817,9 @@
     </Peptide>
     <Peptide id="peptide_1_10">
       <PeptideSequence>LINTPAAPSTPLTQEYLWTK</PeptideSequence>
-      <Modification residues="T" location="4" avgMassDelta=""/>
+      <Modification residues="T" location="4" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_2_1">
       <PeptideSequence>SAENGNIVIIGGGDTATVAK</PeptideSequence>
@@ -839,18 +847,24 @@
     </Peptide>
     <Peptide id="peptide_2_5">
       <PeptideSequence>INTPAAPSTPLTQEYLWTK</PeptideSequence>
-      <Modification residues="T" location="3" avgMassDelta=""/>
+      <Modification residues="T" location="3" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_2_6">
       <PeptideSequence>DVDLFGSDDEVDEEAEK</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="7" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
     </Peptide>
     <Peptide id="peptide_2_7">
       <PeptideSequence>AYTGLVVTR</PeptideSequence>
-      <Modification residues="T" location="3" avgMassDelta=""/>
+      <Modification residues="T" location="3" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_2_8">
       <PeptideSequence>NSLTNGGDVSSPGESGDDLR</PeptideSequence>
@@ -869,7 +883,9 @@
       <Modification residues="S" location="3" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="10" avgMassDelta=""/>
+      <Modification residues="L" location="10" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_3_2">
       <PeptideSequence>LGEDNINVVEGNEQFISASK</PeptideSequence>
@@ -885,7 +901,9 @@
     </Peptide>
     <Peptide id="peptide_3_5">
       <PeptideSequence>GTPKPVDTDDEED</PeptideSequence>
-      <Modification residues="T" location="8" avgMassDelta=""/>
+      <Modification residues="T" location="8" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_3_6">
       <PeptideSequence>DTSSIFSGEEPEIK</PeptideSequence>
@@ -901,7 +919,9 @@
       <Modification residues="S" location="6" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="10" avgMassDelta=""/>
+      <Modification residues="L" location="10" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_3_9">
       <PeptideSequence>ETVIEAEPVEDSEDEDSEEEEPEIKR</PeptideSequence>
@@ -962,7 +982,9 @@
     </Peptide>
     <Peptide id="peptide_4_10">
       <PeptideSequence>LSSDIDDISR</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="10" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -975,11 +997,15 @@
     </Peptide>
     <Peptide id="peptide_5_3">
       <PeptideSequence>GSNGNDDDDNDGGFILTNK</PeptideSequence>
-      <Modification residues="L" location="16" avgMassDelta=""/>
+      <Modification residues="L" location="16" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_5_4">
       <PeptideSequence>DTAQEVDDVLK</PeptideSequence>
-      <Modification residues="L" location="10" avgMassDelta=""/>
+      <Modification residues="L" location="10" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_5_5">
       <PeptideSequence>VTAPVFDAVVK</PeptideSequence>
@@ -1001,15 +1027,21 @@
     </Peptide>
     <Peptide id="peptide_5_9">
       <PeptideSequence>EDVDLFGSDDEVDEEAEKLK</PeptideSequence>
-      <Modification residues="L" location="5" avgMassDelta=""/>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="8" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="19" avgMassDelta=""/>
+      <Modification residues="L" location="19" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_5_10">
       <PeptideSequence>KELGDAYVSSDEEF</PeptideSequence>
-      <Modification residues="L" location="3" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="10" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
@@ -1022,9 +1054,15 @@
     </Peptide>
     <Peptide id="peptide_6_3">
       <PeptideSequence>QHQDEDDDDDELPSHSSVLK</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
-      <Modification residues="L" location="12" avgMassDelta=""/>
-      <Modification residues="L" location="19" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
+      <Modification residues="L" location="12" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="19" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_6_4">
       <PeptideSequence>ASTGEEYTAETDPGVQSVK</PeptideSequence>
@@ -1040,11 +1078,15 @@
     </Peptide>
     <Peptide id="peptide_6_7">
       <PeptideSequence>DEDVDLFGSDDEVDEEAEKLK</PeptideSequence>
-      <Modification residues="L" location="6" avgMassDelta=""/>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="9" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="20" avgMassDelta=""/>
+      <Modification residues="L" location="20" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_6_8">
       <PeptideSequence>EGAGVTLEEIQPTQSEKER</PeptideSequence>
@@ -1063,15 +1105,21 @@
     </Peptide>
     <Peptide id="peptide_7_1">
       <PeptideSequence>QHQDEDDDDDELPSHSSVLK</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_7_2">
       <PeptideSequence>DFELEESDEEK</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_7_3">
       <PeptideSequence>SDELDEDDEDYENSR</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="15" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1084,7 +1132,9 @@
       <Modification residues="S" location="3" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="9" avgMassDelta=""/>
+      <Modification residues="L" location="9" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_7_5">
       <PeptideSequence>NNKDTEGDVDMD</PeptideSequence>
@@ -1097,9 +1147,15 @@
     </Peptide>
     <Peptide id="peptide_7_8">
       <PeptideSequence>SEDLPLNLSR</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
-      <Modification residues="L" location="6" avgMassDelta=""/>
-      <Modification residues="L" location="8" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="8" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="10" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1193,19 +1249,27 @@
     </Peptide>
     <Peptide id="peptide_9_7">
       <PeptideSequence>APAASGSAAAAAEEEDDEDVDLFGSDDEVDEEAEKLK</PeptideSequence>
-      <Modification residues="L" location="22" avgMassDelta=""/>
+      <Modification residues="L" location="22" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="25" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="36" avgMassDelta=""/>
+      <Modification residues="L" location="36" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_9_8">
       <PeptideSequence>AEEEDDEDVDLFGSDDEVDEEAEKLK</PeptideSequence>
-      <Modification residues="L" location="11" avgMassDelta=""/>
+      <Modification residues="L" location="11" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="14" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="25" avgMassDelta=""/>
+      <Modification residues="L" location="25" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_9_9">
       <PeptideSequence>SDDEVDEEAEKLK</PeptideSequence>
@@ -1230,7 +1294,9 @@
     </Peptide>
     <Peptide id="peptide_10_4">
       <PeptideSequence>DFNVPLDGK</PeptideSequence>
-      <Modification residues="L" location="6" avgMassDelta=""/>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_10_5">
       <PeptideSequence>ITRPMSVPGSPR</PeptideSequence>
@@ -1264,7 +1330,9 @@
     </Peptide>
     <Peptide id="peptide_11_1">
       <PeptideSequence>AATPAAHEVGDLAGK</PeptideSequence>
-      <Modification residues="L" location="12" avgMassDelta=""/>
+      <Modification residues="L" location="12" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_11_2">
       <PeptideSequence>TVYVEHDIDGTHAD</PeptideSequence>
@@ -1316,16 +1384,24 @@
     </Peptide>
     <Peptide id="peptide_12_4">
       <PeptideSequence>DVKPWDDETDLDELLTNVK</PeptideSequence>
-      <Modification residues="L" location="11" avgMassDelta=""/>
-      <Modification residues="L" location="14" avgMassDelta=""/>
-      <Modification residues="L" location="15" avgMassDelta=""/>
+      <Modification residues="L" location="11" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="14" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="15" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_12_5">
       <PeptideSequence>DVKDLFDYAQEK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_12_6">
       <PeptideSequence>ATAGDTHLGGEDFDFK</PeptideSequence>
-      <Modification residues="L" location="8" avgMassDelta=""/>
+      <Modification residues="L" location="8" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_12_7">
       <PeptideSequence>AASYEEIAQAIKK</PeptideSequence>
@@ -1338,7 +1414,9 @@
     </Peptide>
     <Peptide id="peptide_12_10">
       <PeptideSequence>HILTDEDESDEDEYYK</PeptideSequence>
-      <Modification residues="L" location="3" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="9" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
@@ -1348,7 +1426,9 @@
     </Peptide>
     <Peptide id="peptide_13_2">
       <PeptideSequence>DFELEESDEEKAAR</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="14" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1358,7 +1438,9 @@
     </Peptide>
     <Peptide id="peptide_13_4">
       <PeptideSequence>VNEDKYTPDLK</PeptideSequence>
-      <Modification residues="L" location="10" avgMassDelta=""/>
+      <Modification residues="L" location="10" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_13_5">
       <PeptideSequence>VGGHEGAGVVVGMGENVK</PeptideSequence>
@@ -1395,7 +1477,9 @@
     </Peptide>
     <Peptide id="peptide_14_5">
       <PeptideSequence>KKELGDAYVSSDEEF</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="11" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
@@ -1441,14 +1525,24 @@
     </Peptide>
     <Peptide id="peptide_15_4">
       <PeptideSequence>ATEDELKELFQDLK</PeptideSequence>
-      <Modification residues="L" location="6" avgMassDelta=""/>
-      <Modification residues="L" location="9" avgMassDelta=""/>
-      <Modification residues="L" location="13" avgMassDelta=""/>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="9" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="13" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_15_5">
       <PeptideSequence>VQELLEGFFDGKK</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
-      <Modification residues="L" location="5" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_15_6">
       <PeptideSequence>DVDFHKIPID</PeptideSequence>
@@ -1467,14 +1561,18 @@
     </Peptide>
     <Peptide id="peptide_15_10">
       <PeptideSequence>GVNEDKYTPDLK</PeptideSequence>
-      <Modification residues="L" location="11" avgMassDelta=""/>
+      <Modification residues="L" location="11" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_16_1">
       <PeptideSequence>DIDDGHNQVSYTDTR</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_16_2">
       <PeptideSequence>SGDDLVIDGHK</PeptideSequence>
-      <Modification residues="L" location="5" avgMassDelta=""/>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_16_3">
       <PeptideSequence>AAIEGSYIDKK</PeptideSequence>
@@ -1499,15 +1597,21 @@
     </Peptide>
     <Peptide id="peptide_16_9">
       <PeptideSequence>AGELSDLEDRVDNSLPGSHR</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="5" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="7" avgMassDelta=""/>
+      <Modification residues="L" location="7" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="10" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
-      <Modification residues="L" location="15" avgMassDelta=""/>
+      <Modification residues="L" location="15" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="20" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1517,7 +1621,9 @@
     </Peptide>
     <Peptide id="peptide_17_1">
       <PeptideSequence>LAEQAERYEEMVENMK</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="7" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1563,7 +1669,9 @@
     </Peptide>
     <Peptide id="peptide_18_3">
       <PeptideSequence>ATAGDTHLGGEDFDNR</PeptideSequence>
-      <Modification residues="L" location="8" avgMassDelta=""/>
+      <Modification residues="L" location="8" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="16" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1597,15 +1705,21 @@
     </Peptide>
     <Peptide id="peptide_19_3">
       <PeptideSequence>RKGTFTDVSPQLLE</PeptideSequence>
-      <Modification residues="T" location="4" avgMassDelta=""/>
+      <Modification residues="T" location="4" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_19_4">
       <PeptideSequence>IEEELGSEAIYAGKDFQK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_19_5">
       <PeptideSequence>NDKYSLAPVATELEK</PeptideSequence>
-      <Modification residues="L" location="6" avgMassDelta=""/>
-      <Modification residues="L" location="13" avgMassDelta=""/>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="13" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_19_6">
       <PeptideSequence>VFQERDPANIPWGK</PeptideSequence>
@@ -1618,11 +1732,15 @@
     </Peptide>
     <Peptide id="peptide_19_9">
       <PeptideSequence>IYEKLDIDDAK</PeptideSequence>
-      <Modification residues="L" location="5" avgMassDelta=""/>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_19_10">
       <PeptideSequence>GEVTASGDDLVIDGHK</PeptideSequence>
-      <Modification residues="L" location="10" avgMassDelta=""/>
+      <Modification residues="L" location="10" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_20_1">
       <PeptideSequence>IAEKDFDEVEAK</PeptideSequence>
@@ -1650,11 +1768,15 @@
     </Peptide>
     <Peptide id="peptide_20_9">
       <PeptideSequence>APAASGSAAAAAEEEDDEDVDLFGSDDEVDEEAEKLKQQR</PeptideSequence>
-      <Modification residues="L" location="22" avgMassDelta=""/>
+      <Modification residues="L" location="22" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="25" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="36" avgMassDelta=""/>
+      <Modification residues="L" location="36" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="40" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1667,20 +1789,30 @@
     </Peptide>
     <Peptide id="peptide_21_2">
       <PeptideSequence>QRLEEILPAKAEEVK</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
       <Modification residues="R" location="2" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
-      <Modification residues="L" location="3" avgMassDelta=""/>
-      <Modification residues="L" location="7" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="7" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_21_3">
       <PeptideSequence>EQDVDVAKEAITEAAK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_21_4">
       <PeptideSequence>DQLEYLEEKR</PeptideSequence>
-      <Modification residues="L" location="3" avgMassDelta=""/>
-      <Modification residues="L" location="6" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="10" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1714,30 +1846,42 @@
     </Peptide>
     <Peptide id="peptide_22_4">
       <PeptideSequence>DEDVDLFGSDDEVDEEAEKLKQQR</PeptideSequence>
-      <Modification residues="L" location="6" avgMassDelta=""/>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="S" location="9" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="20" avgMassDelta=""/>
+      <Modification residues="L" location="20" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="24" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
     </Peptide>
     <Peptide id="peptide_22_5">
       <PeptideSequence>TLADIFNDECHGDFDTK</PeptideSequence>
-      <Modification residues="C" location="10" avgMassDelta=""/>
+      <Modification residues="C" location="10" avgMassDelta="57.0215">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:4" name="Carbamidomethyl"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_22_6">
       <PeptideSequence>TVHPIGEISDYEEAQVK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_22_7">
       <PeptideSequence>LDDDDKETLDDAIK</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
-      <Modification residues="L" location="9" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="9" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_22_8">
       <PeptideSequence>GSDDEVDEEAEKLK</PeptideSequence>
-      <Modification residues="L" location="13" avgMassDelta=""/>
+      <Modification residues="L" location="13" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_22_9">
       <PeptideSequence>EKETEVDGDIDSIK</PeptideSequence>
@@ -1789,14 +1933,18 @@
     </Peptide>
     <Peptide id="peptide_24_2">
       <PeptideSequence>TVKEEVTETEELNK</PeptideSequence>
-      <Modification residues="L" location="12" avgMassDelta=""/>
+      <Modification residues="L" location="12" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_24_3">
       <PeptideSequence>EHAMELAEWNETAQDVNEDDKGSR</PeptideSequence>
       <Modification residues="M" location="4" avgMassDelta="15.9949">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:35" name="Oxidation"/>
       </Modification>
-      <Modification residues="L" location="6" avgMassDelta=""/>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="24" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1818,14 +1966,24 @@
     </Peptide>
     <Peptide id="peptide_24_9">
       <PeptideSequence>NQVLEEELEEADKNLKETTEK</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
-      <Modification residues="L" location="8" avgMassDelta=""/>
-      <Modification residues="L" location="15" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="8" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="15" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_24_10">
       <PeptideSequence>KDEATGLGVGWPAEATDFDKLGK</PeptideSequence>
-      <Modification residues="L" location="7" avgMassDelta=""/>
-      <Modification residues="L" location="21" avgMassDelta=""/>
+      <Modification residues="L" location="7" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="21" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_25_1">
       <PeptideSequence>ETTKPEVLETEKPKPAVADDDDLDDLDISPEEIR</PeptideSequence>
@@ -1838,7 +1996,9 @@
     </Peptide>
     <Peptide id="peptide_25_4">
       <PeptideSequence>DGKYDLDFKNPESD</PeptideSequence>
-      <Modification residues="L" location="6" avgMassDelta=""/>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_25_5">
       <PeptideSequence>ASLGDKKAEDEEEDEGEIDETGLDPK</PeptideSequence>
@@ -1860,27 +2020,39 @@
     </Peptide>
     <Peptide id="peptide_25_9">
       <PeptideSequence>LGGNRDFDTTQSK</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="5" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
     </Peptide>
     <Peptide id="peptide_25_10">
       <PeptideSequence>LEEVKDEEDEKK</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_26_1">
       <PeptideSequence>PVGNPEGADKPNKK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_26_2">
       <PeptideSequence>NNVELILPVDFVTADKFDKDAK</PeptideSequence>
-      <Modification residues="L" location="5" avgMassDelta=""/>
-      <Modification residues="L" location="7" avgMassDelta=""/>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="7" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_26_3">
       <PeptideSequence>EALDLIMDAIDKAGYKGK</PeptideSequence>
-      <Modification residues="L" location="3" avgMassDelta=""/>
-      <Modification residues="L" location="5" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="M" location="7" avgMassDelta="15.9949">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:35" name="Oxidation"/>
       </Modification>
@@ -1902,7 +2074,9 @@
     </Peptide>
     <Peptide id="peptide_26_7">
       <PeptideSequence>YGEVCPANWHPGDETIKPSPEASK</PeptideSequence>
-      <Modification residues="C" location="5" avgMassDelta=""/>
+      <Modification residues="C" location="5" avgMassDelta="57.0215">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:4" name="Carbamidomethyl"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_26_8">
       <PeptideSequence>KNDDDDDDKWDDF</PeptideSequence>
@@ -1912,14 +2086,18 @@
       <Modification residues="R" location="2" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
-      <Modification residues="L" location="22" avgMassDelta=""/>
+      <Modification residues="L" location="22" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_26_10">
       <PeptideSequence>MVEEAEKYAQQDQELKEK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_27_1">
       <PeptideSequence>DTQGGVLGATKTDKDADAYNER</PeptideSequence>
-      <Modification residues="L" location="7" avgMassDelta=""/>
+      <Modification residues="L" location="7" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="22" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1989,7 +2167,9 @@
       <Modification residues="S" location="3" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
-      <Modification residues="L" location="4" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="11" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1999,8 +2179,12 @@
     </Peptide>
     <Peptide id="peptide_29_1">
       <PeptideSequence>ALKGPQVTGESPITDKK</PeptideSequence>
-      <Modification residues="L" location="2" avgMassDelta=""/>
-      <Modification residues="T" location="8" avgMassDelta=""/>
+      <Modification residues="L" location="2" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="T" location="8" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_29_2">
       <PeptideSequence>AEQKEEESTSAKDEDTPMTDAQDDTNDNDAKTQADNAK</PeptideSequence>
@@ -2013,7 +2197,9 @@
     </Peptide>
     <Peptide id="peptide_29_4">
       <PeptideSequence>NVEHLVEK</PeptideSequence>
-      <Modification residues="L" location="5" avgMassDelta=""/>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_29_5">
       <PeptideSequence>SEPQEEKNDDDGQSKPLSER</PeptideSequence>
@@ -2038,7 +2224,9 @@
     </Peptide>
     <Peptide id="peptide_29_10">
       <PeptideSequence>SKLDASEIEEVTK</PeptideSequence>
-      <Modification residues="L" location="3" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_30_1">
       <PeptideSequence>SGYDDEEDDDEEKNIERR</PeptideSequence>
@@ -2051,16 +2239,24 @@
     </Peptide>
     <Peptide id="peptide_30_4">
       <PeptideSequence>LILPVDFVTADKFDKDAK</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
-      <Modification residues="L" location="3" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_30_5">
       <PeptideSequence>EKDVPLVVPIVNPEHIDVVENK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_30_6">
       <PeptideSequence>LVDITKDFELEESDEEKAAR</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
-      <Modification residues="L" location="10" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="10" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="20" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -2076,7 +2272,9 @@
       <Modification residues="R" location="1" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
-      <Modification residues="L" location="3" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_30_10">
       <PeptideSequence>LDEEYKDFASDQEKEK</PeptideSequence>
@@ -2095,21 +2293,27 @@
     </Peptide>
     <Peptide id="peptide_31_5">
       <PeptideSequence>QGSHDVHGSPLKPDDIK</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_31_6">
       <PeptideSequence>HGGSGSTQEEFNTAIK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_31_7">
       <PeptideSequence>IGSEVYHNLK</PeptideSequence>
-      <Modification residues="L" location="9" avgMassDelta=""/>
+      <Modification residues="L" location="9" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_31_8">
       <PeptideSequence>AKIDVVDQAK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_31_9">
       <PeptideSequence>LSDKDEAFNK</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_31_10">
       <PeptideSequence>ITITNDKGR</PeptideSequence>
@@ -2128,15 +2332,21 @@
     </Peptide>
     <Peptide id="peptide_32_4">
       <PeptideSequence>QLDAATAKDEDVEKVTYVDDESAFR</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_32_5">
       <PeptideSequence>ARDQDDLDVNEFLNR</PeptideSequence>
       <Modification residues="R" location="2" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
-      <Modification residues="L" location="7" avgMassDelta=""/>
-      <Modification residues="L" location="13" avgMassDelta=""/>
+      <Modification residues="L" location="7" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="13" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="15" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -2152,8 +2362,12 @@
     </Peptide>
     <Peptide id="peptide_32_9">
       <PeptideSequence>ASLGDKKAEDEEEDEGEIDETGLD</PeptideSequence>
-      <Modification residues="L" location="3" avgMassDelta=""/>
-      <Modification residues="L" location="23" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="23" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_32_10">
       <PeptideSequence>SRTDEDEFEGDEFETR</PeptideSequence>
@@ -2172,7 +2386,9 @@
     </Peptide>
     <Peptide id="peptide_33_3">
       <PeptideSequence>HYDLDSDNGIGK</PeptideSequence>
-      <Modification residues="L" location="4" avgMassDelta=""/>
+      <Modification residues="L" location="4" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_33_4">
       <PeptideSequence>HLENVEIVK</PeptideSequence>
@@ -2182,7 +2398,9 @@
     </Peptide>
     <Peptide id="peptide_33_6">
       <PeptideSequence>LGIHEDAQNR</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="10" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -2195,8 +2413,12 @@
     </Peptide>
     <Peptide id="peptide_33_9">
       <PeptideSequence>TKGELSKDELEK</PeptideSequence>
-      <Modification residues="L" location="5" avgMassDelta=""/>
-      <Modification residues="L" location="10" avgMassDelta=""/>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="10" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_33_10">
       <PeptideSequence>MVSEAEKFKEEDEKEASR</PeptideSequence>
@@ -2224,7 +2446,9 @@
     </Peptide>
     <Peptide id="peptide_34_6">
       <PeptideSequence>GKLDEEYKDFASDQEKEK</PeptideSequence>
-      <Modification residues="L" location="3" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_34_7">
       <PeptideSequence>MVSEAEKFKEEDEKEASR</PeptideSequence>
@@ -2258,15 +2482,21 @@
     </Peptide>
     <Peptide id="peptide_35_5">
       <PeptideSequence>SHLEDEEFKQR</PeptideSequence>
-      <Modification residues="L" location="3" avgMassDelta=""/>
+      <Modification residues="L" location="3" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="11" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
     </Peptide>
     <Peptide id="peptide_35_6">
       <PeptideSequence>KNNVELILPVDFVTADKFDKDAK</PeptideSequence>
-      <Modification residues="L" location="6" avgMassDelta=""/>
-      <Modification residues="L" location="8" avgMassDelta=""/>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="8" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_35_7">
       <PeptideSequence>TKTVKEEVTETEELNK</PeptideSequence>
@@ -2303,21 +2533,27 @@
       <Modification residues="R" location="1" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
-      <Modification residues="L" location="5" avgMassDelta=""/>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_36_6">
       <PeptideSequence>KFDDHEVQGDIK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_36_7">
       <PeptideSequence>TFKSEPQEEKNDDDGQSKPLSER</PeptideSequence>
-      <Modification residues="L" location="20" avgMassDelta=""/>
+      <Modification residues="L" location="20" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="23" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
     </Peptide>
     <Peptide id="peptide_36_8">
       <PeptideSequence>LEEVKDEEDEKKEK</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_36_9">
       <PeptideSequence>YKDGKYDLDFKNPESDPSK</PeptideSequence>
@@ -2336,17 +2572,27 @@
     </Peptide>
     <Peptide id="peptide_37_3">
       <PeptideSequence>ATAGDTHLGGQDFDTNLLEHFKK</PeptideSequence>
-      <Modification residues="L" location="8" avgMassDelta=""/>
-      <Modification residues="L" location="17" avgMassDelta=""/>
-      <Modification residues="L" location="18" avgMassDelta=""/>
+      <Modification residues="L" location="8" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="17" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="18" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_37_4">
       <PeptideSequence>KNQVLEEELEEADKNLK</PeptideSequence>
     </Peptide>
     <Peptide id="peptide_37_5">
       <PeptideSequence>KDGGIGKVDFPVLADTNHSLSR</PeptideSequence>
-      <Modification residues="L" location="13" avgMassDelta=""/>
-      <Modification residues="L" location="20" avgMassDelta=""/>
+      <Modification residues="L" location="13" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="20" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="22" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -2362,7 +2608,9 @@
     </Peptide>
     <Peptide id="peptide_37_8">
       <PeptideSequence>SKYEEEILEHSGIR</PeptideSequence>
-      <Modification residues="L" location="8" avgMassDelta=""/>
+      <Modification residues="L" location="8" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="14" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -2378,7 +2626,9 @@
     </Peptide>
     <Peptide id="peptide_38_2">
       <PeptideSequence>EVEKEVPETEEEDKAAEEDDKKPK</PeptideSequence>
-      <Modification residues="E" location="1" avgMassDelta=""/>
+      <Modification residues="E" location="1" avgMassDelta="-18.0106">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:27" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_38_3">
       <PeptideSequence>GRVDDVVNVSGHR</PeptideSequence>
@@ -2394,7 +2644,9 @@
     </Peptide>
     <Peptide id="peptide_38_5">
       <PeptideSequence>SVKDLDVAGKR</PeptideSequence>
-      <Modification residues="L" location="5" avgMassDelta=""/>
+      <Modification residues="L" location="5" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="11" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -2413,8 +2665,12 @@
     </Peptide>
     <Peptide id="peptide_38_9">
       <PeptideSequence>LSVKDLDVAGKR</PeptideSequence>
-      <Modification residues="L" location="1" avgMassDelta=""/>
-      <Modification residues="L" location="6" avgMassDelta=""/>
+      <Modification residues="L" location="1" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
+      <Modification residues="L" location="6" avgMassDelta="6.0201">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
+      </Modification>
       <Modification residues="R" location="12" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>

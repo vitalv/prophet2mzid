@@ -409,10 +409,12 @@ class PepXML < Format
         massdiff = ""
         hit.parent.parent.parent.xpath(".//#{@xmlns}aminoacid_modification").each do |m|
           aa = m.xpath("./@aminoacid").to_s
-          if  aa == residue and m.xpath("./@mass").to_s.to_f.truncate.to_s == mass.to_f.truncate.to_s
+          mod_mass = m.xpath("./@mass").to_s.to_f.truncate.to_s
+          if  aa == residue and mod_mass == mass.to_f.truncate.to_s
             massdiff = m.xpath("./@massdiff").to_s
-            massdiff = "6.0201" if residue == "L" and mass == "0"
           end
+          #not sure why, but L , in the pep.xml. appears like so: FGDDDS[167]DDEFDHDEL[119] <mod_aminoacid_mass position="15" mass="0" />
+          massdiff = "6.0201" if  residue == "L" and mass == "0"
         end
         cvParam = getModificationCvParam(residue, massdiff)
         pep_modifications_Arr << [residue, location, massdiff, cvParam]
