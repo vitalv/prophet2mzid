@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MzIdentML xmlns="http://psidev.info/psi/pi/mzIdentML/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="" version="1.1.0" xsi:schemaLocation="http://psidev.info/psi/pi/mzIdentML/1.1 ../../schema/mzIdentML1.1.0.xsd" creationDate="2014-02-21T16:36:42">
+<MzIdentML xmlns="http://psidev.info/psi/pi/mzIdentML/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="" version="1.1.0" xsi:schemaLocation="http://psidev.info/psi/pi/mzIdentML/1.1 ../../schema/mzIdentML1.1.0.xsd" creationDate="2014-02-24T19:30:23">
   <cvList>
     <cv id="PSI-MS" fullName="Proteomics Standards Initiative Mass Spectrometry Vocabularies" uri="http://psidev.cvs.sourceforge.net/viewvc/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo" version="2.32.0"/>
     <cv id="UNIMOD" fullName="UNIMOD" uri="http://www.unimod.org/obo/unimod.obo"/>
@@ -745,7 +745,9 @@
     </DBSequence>
     <Peptide id="peptide_1_1">
       <PeptideSequence>QNSLLHQSQQR</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
       <Modification residues="S" location="3" avgMassDelta="79.9663">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
       </Modification>
@@ -811,7 +813,9 @@
     </Peptide>
     <Peptide id="peptide_1_10">
       <PeptideSequence>LINTPAAPSTPLTQEYLWTK</PeptideSequence>
-      <Modification residues="T" location="4" avgMassDelta=""/>
+      <Modification residues="T" location="4" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_2_1">
       <PeptideSequence>SAENGNIVIIGGGDTATVAK</PeptideSequence>
@@ -839,7 +843,9 @@
     </Peptide>
     <Peptide id="peptide_2_5">
       <PeptideSequence>INTPAAPSTPLTQEYLWTK</PeptideSequence>
-      <Modification residues="T" location="3" avgMassDelta=""/>
+      <Modification residues="T" location="3" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_2_6">
       <PeptideSequence>DVDLFGSDDEVDEEAEK</PeptideSequence>
@@ -850,7 +856,9 @@
     </Peptide>
     <Peptide id="peptide_2_7">
       <PeptideSequence>AYTGLVVTR</PeptideSequence>
-      <Modification residues="T" location="3" avgMassDelta=""/>
+      <Modification residues="T" location="3" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_2_8">
       <PeptideSequence>NSLTNGGDVSSPGESGDDLR</PeptideSequence>
@@ -885,7 +893,9 @@
     </Peptide>
     <Peptide id="peptide_3_5">
       <PeptideSequence>GTPKPVDTDDEED</PeptideSequence>
-      <Modification residues="T" location="8" avgMassDelta=""/>
+      <Modification residues="T" location="8" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_3_6">
       <PeptideSequence>DTSSIFSGEEPEIK</PeptideSequence>
@@ -1022,7 +1032,9 @@
     </Peptide>
     <Peptide id="peptide_6_3">
       <PeptideSequence>QHQDEDDDDDELPSHSSVLK</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
       <Modification residues="L" location="12" avgMassDelta=""/>
       <Modification residues="L" location="19" avgMassDelta=""/>
     </Peptide>
@@ -1063,7 +1075,9 @@
     </Peptide>
     <Peptide id="peptide_7_1">
       <PeptideSequence>QHQDEDDDDDELPSHSSVLK</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_7_2">
       <PeptideSequence>DFELEESDEEK</PeptideSequence>
@@ -1597,7 +1611,9 @@
     </Peptide>
     <Peptide id="peptide_19_3">
       <PeptideSequence>RKGTFTDVSPQLLE</PeptideSequence>
-      <Modification residues="T" location="4" avgMassDelta=""/>
+      <Modification residues="T" location="4" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_19_4">
       <PeptideSequence>IEEELGSEAIYAGKDFQK</PeptideSequence>
@@ -1667,7 +1683,9 @@
     </Peptide>
     <Peptide id="peptide_21_2">
       <PeptideSequence>QRLEEILPAKAEEVK</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
       <Modification residues="R" location="2" avgMassDelta="6.0201">
         <cvParam cvRef="UNIMOD" accession="UNIMOD:188" name="13C(6) Silac label"/>
       </Modification>
@@ -1725,7 +1743,9 @@
     </Peptide>
     <Peptide id="peptide_22_5">
       <PeptideSequence>TLADIFNDECHGDFDTK</PeptideSequence>
-      <Modification residues="C" location="10" avgMassDelta=""/>
+      <Modification residues="C" location="10" avgMassDelta="57.0215">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:4" name="Carbamidomethyl"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_22_6">
       <PeptideSequence>TVHPIGEISDYEEAQVK</PeptideSequence>
@@ -1902,7 +1922,9 @@
     </Peptide>
     <Peptide id="peptide_26_7">
       <PeptideSequence>YGEVCPANWHPGDETIKPSPEASK</PeptideSequence>
-      <Modification residues="C" location="5" avgMassDelta=""/>
+      <Modification residues="C" location="5" avgMassDelta="57.0215">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:4" name="Carbamidomethyl"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_26_8">
       <PeptideSequence>KNDDDDDDKWDDF</PeptideSequence>
@@ -2000,7 +2022,9 @@
     <Peptide id="peptide_29_1">
       <PeptideSequence>ALKGPQVTGESPITDKK</PeptideSequence>
       <Modification residues="L" location="2" avgMassDelta=""/>
-      <Modification residues="T" location="8" avgMassDelta=""/>
+      <Modification residues="T" location="8" avgMassDelta="79.9663">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:21" name="Phospho"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_29_2">
       <PeptideSequence>AEQKEEESTSAKDEDTPMTDAQDDTNDNDAKTQADNAK</PeptideSequence>
@@ -2095,7 +2119,9 @@
     </Peptide>
     <Peptide id="peptide_31_5">
       <PeptideSequence>QGSHDVHGSPLKPDDIK</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_31_6">
       <PeptideSequence>HGGSGSTQEEFNTAIK</PeptideSequence>
@@ -2128,7 +2154,9 @@
     </Peptide>
     <Peptide id="peptide_32_4">
       <PeptideSequence>QLDAATAKDEDVEKVTYVDDESAFR</PeptideSequence>
-      <Modification residues="Q" location="1" avgMassDelta=""/>
+      <Modification residues="Q" location="1" avgMassDelta="-17.0265">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:28" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_32_5">
       <PeptideSequence>ARDQDDLDVNEFLNR</PeptideSequence>
@@ -2378,7 +2406,9 @@
     </Peptide>
     <Peptide id="peptide_38_2">
       <PeptideSequence>EVEKEVPETEEEDKAAEEDDKKPK</PeptideSequence>
-      <Modification residues="E" location="1" avgMassDelta=""/>
+      <Modification residues="E" location="1" avgMassDelta="-18.0106">
+        <cvParam cvRef="UNIMOD" accession="UNIMOD:27" name="Gln-&gt;pyro-Glu"/>
+      </Modification>
     </Peptide>
     <Peptide id="peptide_38_3">
       <PeptideSequence>GRVDDVVNVSGHR</PeptideSequence>
@@ -17185,6 +17215,18 @@
         </ProteinAmbiguityGroup>
         <ProteinAmbiguityGroup id="PAG_44">
           <ProteinDetectionHypothesis id="sp|TRY1_BOVIN|" passThreshold="true">
+            <PeptideHypothesis peptideEvidence_ref="peptide_3_2_SDB_1_TRY1_BOVIN_0_0">
+              <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SIL_CGG_2011_224_SILAC1b_IMAC_Fr1_SII_43_1"/>
+            </PeptideHypothesis>
+            <PeptideHypothesis peptideEvidence_ref="peptide_5_2_SDB_1_TRY1_BOVIN_0_0">
+              <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SIL_CGG_2011_224_SILAC1b_IMAC_Fr2_SII_8_1"/>
+            </PeptideHypothesis>
+            <PeptideHypothesis peptideEvidence_ref="peptide_2_10_SDB_1_TRY1_BOVIN_0_0">
+              <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SIL_CGG_2011_224_SILAC1b_IMAC_Fr1_SII_38_1"/>
+            </PeptideHypothesis>
+            <PeptideHypothesis peptideEvidence_ref="peptide_6_6_SDB_1_TRY1_BOVIN_0_0">
+              <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SIL_CGG_2011_224_SILAC1b_IMAC_Fr2_SII_24_1"/>
+            </PeptideHypothesis>
             <cvParam accession="MS:1001093" name="sequence coverage" cvRef="PSI-MS" value="0"/>
             <userParam name="n_indist_proteins" value="1"/>
             <userParam name="probability" value="1.0000"/>
@@ -17239,6 +17281,9 @@
             <userParam name="prot_length" value="350"/>
           </ProteinDetectionHypothesis>
           <ProteinDetectionHypothesis id="sp|ADH1_YEAST|" passThreshold="true">
+            <PeptideHypothesis peptideEvidence_ref="peptide_13_5_SDB_1_ADH1_YEAST_0_0">
+              <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SIL_CGG_2011_224_SILAC1b_IMAC_Fr3_SII_29_1"/>
+            </PeptideHypothesis>
             <cvParam accession="MS:1001093" name="sequence coverage" cvRef="PSI-MS" value="0"/>
             <userParam name="n_indist_proteins" value="1"/>
             <userParam name="probability" value="0.0000"/>
