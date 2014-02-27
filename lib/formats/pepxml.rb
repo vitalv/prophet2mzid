@@ -532,15 +532,19 @@ class PepXML < Format
   def proteinID(protein)
     #If a protein ID contains a "|", then it contains more than just the ID
     if protein.include?('|')
-      arr = protein.split("|")[1].split(":")
-      if arr.length == 1
-        arr[0]
+      if protein.split("|")[0] =~ /^DECOY/i
+        protein.split("|")[0] + "_" + protein.split("|")[1]
       else
-        arr[1]
+        arr = protein.split("|")[1].split(":")
+        if arr.length == 1
+          arr[0]
+         else
+          arr[1]
+        end
       end
     #If there's no characters, then it's an index. I don't fully understand regexp, but this works.
-    elsif (protein =~ /[A-Z]/i) == nil
-      @proteinIndices[protein.to_i]
+    #elsif (protein =~ /[A-Z]/i) == nil
+    #  @proteinIndices[protein.to_i]
     else
       protein
     end
