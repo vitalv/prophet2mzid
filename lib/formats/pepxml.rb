@@ -1,7 +1,10 @@
-require "formats/format.rb"
-require "natcmp.rb"
+#require "formats/format.rb"
+require "#{File.expand_path(File.dirname(__FILE__))}/format.rb" 
+#require "natcmp.rb"
+require "#{File.expand_path(File.dirname(__FILE__))}/../natcmp.rb" 
 require "ms/fasta.rb"
-require "peptide_identification_summary_params.rb"
+#require "peptide_identification_summary_params.rb"
+require "#{File.expand_path(File.dirname(__FILE__))}/../peptide_identification_summary_params.rb" 
 
 # The pepXML implementation of Format
 #
@@ -89,7 +92,7 @@ class PepXML < Format
 
   def peptides
 
-    #Estos peptides seran los <Peptide bajo> <SequenceCollection> en el mzid
+    #These peptides will be the unique <Peptide > entries under <SequenceCollection> in the mzid file
     peps = []
     @doc.xpath("//#{@xmlns}search_hit").each do |search_hit|
       modifications_arr = []
@@ -98,8 +101,9 @@ class PepXML < Format
       peps << [pepseq, modifications_arr]
     end
 
-    peps.uniq! #seguro que quieres uniq!?  El tema es que varios <Spectrum_query pueden dar lugar a <Search_hits del mismo peptido (con sus diferentes scores y tal...)
-               #Para los <Peptide bajo <SequenceCollection sí los quiero uniq     #Pero no para los <SpectrumIdentificationItem, ahí va todo
+    peps.uniq! 
+    #Since these peptides will be the list of every unique sequence under <SequenceCollection> in the .mzid file, get uniq! array
+
     i = 0
     first = 1
     second = 1
@@ -120,7 +124,9 @@ class PepXML < Format
 
 
 
-  def peptideEvidences
+  def peptideEvidences 
+    #peptideEvidence is MzIdentMl nomenclature, it is a peptide sequence in a particular protein position
+    #this information is under search_hit in protxml
     pep_ev_things = []
     @doc.xpath("//#{@xmlns}search_hit").each do |search_hit|
       pepseq = search_hit.xpath("./@peptide").to_s

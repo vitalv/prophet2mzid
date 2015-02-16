@@ -1,4 +1,5 @@
-require "spect_id_result"
+#require "spect_id_result"
+require "#{File.expand_path(File.dirname(__FILE__))}/../spect_id_result.rb" 
 require 'nokogiri'
 require 'set'
 

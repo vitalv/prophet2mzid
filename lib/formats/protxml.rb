@@ -1,7 +1,9 @@
-
-require "formats/format.rb"
-require "formats/pepxml.rb"
-require "protein_group.rb"
+#require "formats/format.rb"
+require "#{File.expand_path(File.dirname(__FILE__))}/format.rb" 
+#require "formats/pepxml.rb"
+require "#{File.expand_path(File.dirname(__FILE__))}/pepxml.rb" 
+#require "protein_group.rb"
+require "#{File.expand_path(File.dirname(__FILE__))}/../protein_group.rb" 
 
 # protXML implementation of Format
 # @author 2 Vital Vialas  (May 2012)
@@ -79,26 +81,24 @@ class ProtXML < PepXML
 
 
 
-  def proteinGroups #OJO, igual que para el caso de ProteinDetection y ProteinDetectionProtocol tndria que hacer varias listas, pero no puedo obtener el SIL de referencia!!
+  def proteinGroups 
 
     all_protein_groups = @doc.xpath("//#{@xmlns}protein_group")
 
     pags = []
-    all_protein_groups.each do |group| #uso all_protein_groups[445] porque tiene varias <protein y una de ellas tien 3 indisti_proteins
+    all_protein_groups.each do |group| 
       group_number = group.xpath("./@group_number").to_s
       group_name = "PAG_#{group_number}"
 
-      protein_hypothesis_set = []
-      #protein_hypothesis_set = Array de objetos ProteinHypothesis
-      #ProteinHypothesis contiene protein_name, prot_hypothesis_params, threshold, y peptide_hypothesis_set -> Array de objetos PeptideHypothesis
+      protein_hypothesis_set = [] #array of ProteinHypothesis objects
+      #ProteinHypothesis contains protein_name, prot_hypothesis_params, threshold, and peptide_hypothesis_set -> Array  PeptideHypothesis objects
 
       group.xpath(".//#{@xmlns}protein|.//#{@xmlns}indistinguishable_protein").each do |protein|
         protein_name = protein.xpath("./@protein_name").to_s
         protein_ID = proteinID(protein.xpath("./@protein_name").to_s)
         protein = protein.parent if protein.node_name == "indistinguishable_protein"
         protein_hypothesis_params = []
-        #Estas protein, si no las encuentro en @@prot_acs, no puedo poner el dBSequence_ref en <ProteinHypothesis
-        pass_threshold = "true" #eS REQUIRED, "If no such threshold has been set, value of true should be given for all results"
+        pass_threshold = "true" #REQUIRED, "If no such threshold has been set, value of true should be given for all results"
         dbseq_ref = "SDB_1_#{protein_name}"
         n_indist_proteins = protein.xpath("./@n_indistinguishable_proteins").to_s.to_i
         probability = protein.xpath("./@probability").to_s
@@ -119,25 +119,22 @@ class ProtXML < PepXML
         peptides = protein.xpath(".//#{@xmlns}peptide")
         #@@peps (pepxml.rb) [["peptide_223_6", ["CFTAGTNTVTFNDGGK", [["C", 1, "57.0215", ["UNIMOD", "UNIMOD:4", "Carbamidomethyl"]]]]]]
 
-        #OJO! CuIDAO CON ESTO:
+        #one peptide sequence may belong in different proteins sequences: (that's what peptide evidence is for)
         #peptide_207_1 -> orf19.2020, orf19.2021 y orf19.2023
 
         pep_ids = []
-        peptides.each do |pep| #Los <peptide > de una <protein>
-          #Obtener peptide_id de cada uno de estos <peptide> (peptide_id: peptide_439_6")
+        peptides.each do |pep| #<protein>'s <peptide>s 
+          #Get peptide_id for each of these <peptide>s (peptide_id: peptide_439_6")
           protxml_pepseq = pep.xpath("./@peptide_sequence").to_s
           protxml_pepmod = pep.xpath(".//#{@xmlns}modification_info")
-          @@peps.each do |pepxml_pep|
-            #SI PARA ESTE protxml_pepseq no encuentro su pepxml_pepseq correspondiente NO entrará en este PAG, porque no podré aportar un <PeptideHypothesis con su peptideEvidence_ref !!!
+          @@peps.each do |pepxml_pep| #Class variable defined in pepxml.rb. Contains array ["peptide_2_6", ["LPAAIDSK", [["L", 1, "6.0201", ["MS", "MS:1001460", "unknown modification"]]]]]
+            #Sometimes the protxml peptide sequence (interact-highprob.prot.xml)  #e.g. LHDPVHILVGTPGR <protein_group group_number 214  LTQ membrane proteins
+            #might have been filtered out in the interact-ipro-filtered.pep.xml   #So these won't be saved below
             pepxml_pepseq = pepxml_pep[1][0]
             pepxml_pepmod = pepxml_pep[1][1]
             if protxml_pepseq == pepxml_pepseq
-
-              #OJORL!!.: No tendría que comprobar que las modificaciones tambien son las mismas?!
-              if (protxml_pepmod.empty? and pepxml_pepmod.empty?) or !protxml_pepmod.empty? #En el prot.xml, Si un pep "SPSS[..]NLSK" está sin modificar (peptide_46_7) y modificado (peptide_20_10) aparece bajo un solo elemento <peptide> !
-
-
-
+              #Check also if it's modified
+              if (protxml_pepmod.empty? and pepxml_pepmod.empty?) or !protxml_pepmod.empty? #In prot.xml,if a pep "SPSS[..]NLSK" is not modified (peptide_46_7) and modified (peptide_20_10) it is under only one <peptide> element !
                 pep_ids << pepxml_pep[0]
               end
             end
